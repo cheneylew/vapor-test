@@ -1,5 +1,5 @@
 framework module CLibreSSL {
-    umbrella header "/Users/dejunliu/Desktop/swift3-vapor/vapor-test/HelloWorld/Packages/CLibreSSL-1.0.0/Sources/CLibreSSL/include/CLibreSSL.h"
+    umbrella header "/Users/dejunliu/Desktop/swift3-vapor/vapor/Packages/CLibreSSL-1.0.0/Sources/CLibreSSL/include/CLibreSSL.h"
     link framework "CLibreSSL"
     export *
 }

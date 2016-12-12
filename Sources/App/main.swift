@@ -1,17 +1,19 @@
 import Vapor
 import Dispatch
+import Foundation
 
 //线程测试
 var arr = [DispatchQueue]()
 
 var count = 0
 for i in 0...1000 {
-    let queue =  DispatchQueue(label: "concurrentQueue\(count)", attributes: .concurrent)
-    queue.async {
+    let queue =  DispatchQueue(label: "codes.vapor.threadsafearray", attributes: .concurrent)
+    queue.async(execute: { 
         count += 1;
-        sleep(3000)
-    }
-    arr.append(queue)
+        while true {
+            
+        }
+    })
 }
 
 print("共\(count)")
