@@ -2,28 +2,9 @@ import Vapor
 import Dispatch
 import Foundation
 
-//线程测试
-var arr = [DispatchQueue]()
-
-var count = 0
-for i in 0...1000 {
-    let queue =  DispatchQueue(label: "codes.vapor.threadsafearray", attributes: .concurrent)
-    queue.async(execute: { 
-        count += 1;
-        while true {
-            
-        }
-    })
-}
-
-print("共\(count)")
-
-while true {
-    
-}
 // 游戏服务器
-//let server = DJServer()
-//server.run();
+let server = DJServer()
+server.run();
 
 print("程序结束！~")
 

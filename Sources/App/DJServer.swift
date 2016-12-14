@@ -12,9 +12,10 @@ import SocksCore
 public class DJServer: DJSocketDelegate {
     var server: TCPInternetSocket!
     var clients: [DJSocket] = []
+    var taskQueue =  DispatchQueue(label: "com.queue.concurrent", attributes: .concurrent)
     
     public init() {
-        let address = InternetAddress(hostname: "0.0.0.0", port: 8888)
+        let address = InternetAddress(hostname: "0.0.0.0", port: 8889)
         self.server = try! TCPInternetSocket(address: address)
     }
     
@@ -49,6 +50,7 @@ public class DJServer: DJSocketDelegate {
         if idx != -1 {
             print("离开了:\(sock.socket!.address.description)")
             self.clients.remove(at: idx)
+            self.startThread()
         }
     }
     
@@ -56,6 +58,22 @@ public class DJServer: DJSocketDelegate {
         let ocString = NSString(bytes: data, length: data.count, encoding: String.Encoding.utf8.rawValue)
         let string = String(describing: ocString)
         print(string)
+    }
+    
+    func startThread() {
+        //线程测试
+        var threadCount = 0
+        self.taskQueue.async(execute: {
+            threadCount += 1;
+            print("new thread start")
+            for _ in 0...10000000 {
+                var sum = 0
+                for j in 0...100000 {
+                    sum += j;
+                }
+            }
+            print("new thread finished")
+        })
     }
 }
 
